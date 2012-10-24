@@ -2,11 +2,11 @@
 #include "SDL.h"
 
 #ifdef _WIN32
-  #include <windows.h>
-  #define __sleep(int n) Sleep(1000*n)
+  #include <windows.h> \
+  #define __sleep(n) Sleep(1000*n)
 #elif __linux__
-  #include <unistd.h>
-  #define __sleep(int n) sleep(n)
+  #include <unistd.h> \
+  #define __sleep(n) sleep(n)
 #endif
 
 #define fi(i,a,b) for (int i=a; i<b; ++i)
