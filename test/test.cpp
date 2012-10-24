@@ -1,6 +1,13 @@
 #include <iostream>
 #include "SDL.h"
-#include <unistd.h>
+
+#ifdef _WIN32
+  #include <windows.h>
+  #define __sleep(int n) Sleep(1000*n)
+#elif __linux__
+  #include <unistd.h>
+  #define __sleep(int n) sleep(n)
+#endif
 
 #define fi(i,a,b) for (int i=a; i<b; ++i)
 
@@ -33,7 +40,7 @@ int main(){
     cout << "Axis\n";
     fi(i,0,6) cout << SDL_JoystickGetAxis(joystick, i) << " ";
     cout << endl;
-    sleep(1);
+    __sleep(1);
   }
 
   SDL_Quit();
