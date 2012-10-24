@@ -6,4 +6,5 @@ int main(){
 #elif __linux__
   std::cout << "Linux\n";
 #endif
+  return 0;
 }
