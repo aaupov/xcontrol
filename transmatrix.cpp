@@ -18,10 +18,12 @@ TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   tableWidget->setVerticalHeaderLabels(rowHeaders);
 
   QHBoxLayout *buttons = new QHBoxLayout;
-  QPushButton *loadButton = new QPushButton(tr("load"));
-  QPushButton *saveButton = new QPushButton(tr("save"));
+  QPushButton *loadButton = new QPushButton(tr("Load"));
+  QPushButton *saveButton = new QPushButton(tr("Save"));
   loadButton->setToolTip(tr("Load transformation matrix from file"));
   saveButton->setToolTip(tr("Save current matrix to file"));
+  loadButton->setMaximumWidth(100);
+  saveButton->setMaximumWidth(100);
   connect(loadButton, SIGNAL(clicked()), this, SLOT(loadMatrix()));
   connect(saveButton, SIGNAL(clicked()), this, SLOT(saveMatrix()));
   buttons->addWidget(loadButton);
@@ -30,7 +32,6 @@ TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   QVBoxLayout *mainLayout = new QVBoxLayout;
   mainLayout->addLayout(buttons);
   mainLayout->addWidget(tableWidget);
-  //mainLayout->setMargin(0);
   setLayout(mainLayout);
 }
 
@@ -75,17 +76,17 @@ void TransMatrix::saveMatrix() {
   QString fileName = QFileDialog::getSaveFileName(this);
   QFile file(fileName);
   if (!fileName.isEmpty()){
-    if (!file.open(QFile::WriteOnly)) {
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
       QMessageBox::warning(this, "XControl", 
           tr("File open error: %1").arg(file.errorString()));
       return;
     }
+    QTextStream out(&file);
+    for (int row = 0; row < NY; ++row) {
+      for (int col = 0; col < NX; ++col)
+        out << tableWidget->item(row, col)->text() << " ";
+      out << QString("\n");
+    }
+    file.close();
   }
-  QTextStream out(&file);
-  for (int row = 0; row < NY; ++row) {
-    for (int col = 0; col < NX; ++col)
-      out << tableWidget->item(row, col)->text() << " ";
-    out << QString("\n");
-  }
-  file.close();
 }

@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include "xcontrol.h"
+#include "mainwindow.h"
 
 class QTableWidget;
 
