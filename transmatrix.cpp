@@ -30,7 +30,7 @@ TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   QVBoxLayout *mainLayout = new QVBoxLayout;
   mainLayout->addLayout(buttons);
   mainLayout->addWidget(tableWidget);
-  mainLayout->setMargin(0);
+  //mainLayout->setMargin(0);
   setLayout(mainLayout);
 }
 
@@ -61,7 +61,7 @@ void TransMatrix::loadMatrix() {
     for (int row = 0; row < NY; ++row){
       line = in.readLine();
       for (int col = 0; col < NX; ++col){
-        array[row*NX+col] = line.split(" ").at(1).toInt();
+        array[row*NX+col] = line.split(" ").at(col).toInt();
       }
     }
     file.close();

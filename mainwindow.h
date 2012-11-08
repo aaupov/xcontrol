@@ -15,7 +15,10 @@ public:
 private:
   void createTabWidget();
   void createStatusBar();
+  void createMenus();
+  void createActions();
   void getParameters();
   QTranslator translator;
   QTabWidget *tabWidget;
+  QAction *exitAct;
 };

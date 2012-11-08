@@ -4,6 +4,8 @@
 
 MainWindow::MainWindow() {
   setWindowTitle("XControl");
+  createActions();
+  createMenus();
   createTabWidget();
   createStatusBar();
 }
@@ -22,4 +24,15 @@ void MainWindow::createTabWidget() {
 
 void MainWindow::getParameters(){
   //stub
+}
+
+void MainWindow::createMenus() {
+  QMenu *fileMenu = menuBar()->addMenu(tr("File"));
+  fileMenu->addAction(exitAct);
+}
+
+void MainWindow::createActions() {
+  exitAct = new QAction(tr("Exit"), this);
+  exitAct->setShortcut(tr("Ctrl+Q"));
+  connect(exitAct, SIGNAL(triggered()), qApp, SLOT(quit())); 
 }
