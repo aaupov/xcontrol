@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include "xcontrol.h"
 
 class QTableWidget;
 

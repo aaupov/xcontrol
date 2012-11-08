@@ -1,6 +1,5 @@
 #include <QtGui>
 #include "transmatrix.h"
-#include "xcontrol.h"
 
 TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   tableWidget = new QTableWidget(this);
@@ -23,8 +22,8 @@ TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   QPushButton *saveButton = new QPushButton(tr("save"));
   loadButton->setToolTip(tr("Load transformation matrix from file"));
   saveButton->setToolTip(tr("Save current matrix to file"));
-  connect(loadButton, SIGNAL(clicked()), tableWidget, SLOT(loadMatrix()));
-  connect(saveButton, SIGNAL(clicked()), tableWidget, SLOT(saveMatrix()));
+  connect(loadButton, SIGNAL(clicked()), this, SLOT(loadMatrix()));
+  connect(saveButton, SIGNAL(clicked()), this, SLOT(saveMatrix()));
   buttons->addWidget(loadButton);
   buttons->addWidget(saveButton);
 
