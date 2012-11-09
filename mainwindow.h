@@ -20,5 +20,7 @@ private:
   void getParameters();
   QTranslator translator;
   QTabWidget *tabWidget;
-  QAction *exitAct;
+  QAction *exitAct, *aboutAct;
+private slots:
+  void about();
 };

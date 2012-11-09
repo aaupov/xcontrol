@@ -24,8 +24,8 @@ TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   saveButton->setToolTip(tr("Save current matrix to file"));
   loadButton->setMaximumWidth(100);
   saveButton->setMaximumWidth(100);
-  connect(loadButton, SIGNAL(clicked()), this, SLOT(loadMatrix()));
-  connect(saveButton, SIGNAL(clicked()), this, SLOT(saveMatrix()));
+  connect(loadButton, SIGNAL(clicked()), SLOT(loadMatrix()));
+  connect(saveButton, SIGNAL(clicked()), SLOT(saveMatrix()));
   buttons->addWidget(loadButton);
   buttons->addWidget(saveButton);
 
