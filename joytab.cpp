@@ -1,5 +1,6 @@
 #include <QtGui>
-#include "transmatrix.h"
+#include <QDebug>
+#include "joytab.h"
 
 TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   tableWidget = new QTableWidget(this);
@@ -29,13 +30,15 @@ TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
   buttons->addWidget(loadButton);
   buttons->addWidget(saveButton);
 
+  show(QVector<int>(NX*NY,0));
+
   QVBoxLayout *mainLayout = new QVBoxLayout;
   mainLayout->addLayout(buttons);
   mainLayout->addWidget(tableWidget);
   setLayout(mainLayout);
 }
 
-void TransMatrix::show(int *array) {
+void TransMatrix::show(QVector<int> array) {
   for (int row = 0; row < NY; ++row)
     for (int col = 0; col < NX; ++col){
       QTableWidgetItem *item = 
@@ -56,16 +59,22 @@ void TransMatrix::loadMatrix() {
       return;
     }
     QApplication::setOverrideCursor(Qt::WaitCursor);
+
     QTextStream in(&file);
-    int *array = new int[NX*NY];
+    QVector<int> array;
     QString line;
-    for (int row = 0; row < NY; ++row){
-      line = in.readLine();
-      for (int col = 0; col < NX; ++col){
-        array[row*NX+col] = line.split(" ").at(col).toInt();
-      }
+    while (!(line = in.readLine()).isEmpty()){
+      QStringList nums = line.simplified().split(" "); //trim all extra whitespaces
+      foreach(QString str, nums)
+        array.push_back(str.toInt());
     }
     file.close();
+    if (array.size() != NX*NY){
+      QMessageBox::warning(this, tr("XControl"), 
+          tr("Invalid dimensions: NX*NY=%1 size=%2").arg(NX*NY).arg(array.size()), 
+          QMessageBox::Ok);
+      array = QVector<int>(NX*NY,0);
+    } 
     show(array);
 
     QApplication::restoreOverrideCursor();

@@ -2,7 +2,7 @@
 #include <QtCore>
 #include <QtGui>
 #include "xcontrol.h"
-#include "transmatrix.h"
+#include "joytab.h"
 #include "infoview.h"
 
 class TransMatrix;

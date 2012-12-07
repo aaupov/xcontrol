@@ -45,8 +45,12 @@ void MainWindow::createActions() {
 
 void MainWindow::about() {
   QMessageBox::about(this, tr("About XControl"),
-      tr("<p align='center'><b>XControl</b> program<br>"
-        "Kobtsev Vitaly, Kashin Dmitry, Khvostov Artem, Aupov Amir, et al.<br>"
-        "Special thanks to Ledovskiy Alexey<br>"
-        "DAFE MIPT 2011-2012</p>"));
+      tr("<p align='center'><b>XControl</b><br>"
+        "<a href=\"http://code.google.com/p/xcontrol/\">http://code.google.com/p/xcontrol/</a><br>"
+        "Vitaly Kobtsev, Dmitry Kashin, Artem Khvostov, Amir Aupov, et al.<br>"
+        "DAFE MIPT 2011-2012</p>"
+        "Special thanks:<br>"
+        "Alexey Ledovskiy for <a href=\"http://code.google.com/p/hypers/\">HyperS</a><br>"
+        "Dante A. Sanchez for <a href=\"http://code.google.com/p/joypick/\">Pick-A-Joystick</a><br>"
+        ));
 }
