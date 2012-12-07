@@ -8,8 +8,8 @@ class QTableWidget;
 
 class TransMatrix : public QWidget {
   Q_OBJECT
-  QJoystick* joystick = QJoystick::instance();
-  int NX = joystick->joystickNumAxes(joystick->currentJoystick());
+  QJoystick* joystick;
+  int NX;
 public:
   TransMatrix(QWidget* parent = 0);
   QTableWidget *tableWidget;

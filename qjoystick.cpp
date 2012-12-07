@@ -9,6 +9,12 @@ QJoystick::QJoystick(QWidget *parent){
     QMessageBox::critical(parent, tr("XControl"), tr("SDL Init error"), 
         QMessageBox::Close);
   }
+  if (SDL_NumJoysticks() == 0){
+    QMessageBox::critical(parent, tr("XControl"), tr("No joysticks found"),
+        QMessageBox::Close);
+  }
+  m_joystick = 0;
+  setJoystick(0);
 }
 
 int QJoystick::availableJoysticks(){
@@ -28,12 +34,7 @@ QString QJoystick::joystickName(int js){
 int QJoystick::joystickNumAxes(int js){
   Q_ASSERT(js < availableJoysticks());
   Q_ASSERT(js >= 0);
-//#ifndef Q_WS_WIN
   return (SDL_JoystickNumAxes(m_joystick));
-  /* Is it worth taking into account this particular difference? */
-//#else
-//  return (SDL_JoystickNumAxes(m_joystick)+SDL_JoystickNumHats(m_joystick));
-//#endif
 }
 
 int QJoystick::joystickNumButtons(int js){
@@ -46,7 +47,7 @@ void QJoystick::setJoystick(int js){
   Q_ASSERT(js < availableJoysticks());
   Q_ASSERT(js >= 0);
 
-  //if (m_joystick) SDL_JoystickClose(m_joystick);
+  if (m_joystick) SDL_JoystickClose(m_joystick);
   m_joystick = SDL_JoystickOpen(js);
 }
 

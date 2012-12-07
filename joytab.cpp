@@ -3,6 +3,9 @@
 #include "joytab.h"
 
 TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
+  joystick = QJoystick::instance();
+  NX = joystick->joystickNumAxes(joystick->currentJoystick());
+
   tableWidget = new QTableWidget(this);
 
   tableWidget->setColumnCount(NX);

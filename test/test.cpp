@@ -2,8 +2,7 @@
 #include "SDL.h"
 
 #ifdef _WIN32
-  #include <windows.h> \
-  #define __sleep(n) Sleep(1000*n)
+  #include <windows.h> 
 #elif __linux__
   #include <unistd.h> \
   #define __sleep(n) sleep(n)
@@ -30,17 +29,30 @@ int main(){
   cout << "Num buttons: " << SDL_JoystickNumButtons(joystick) << endl;
   cout << "Num trackballs: " << SDL_JoystickNumBalls(joystick) << endl;
   cout << "Num hats: " << SDL_JoystickNumHats(joystick) << endl;
+  /* int c1, cons, trim;
+  cons = 80; trim = 2000;
+  cout << "Consume: " << cons << endl;
+  cout << "Trim: " << trim << endl;
+  */
 
   while (1){
     SDL_JoystickUpdate();
-    cout << "Buttons\n";
-    fi(i,0,6) cout << (int)SDL_JoystickGetButton(joystick, i) << " ";
-    cout << endl;
-
     cout << "Axis\n";
     fi(i,0,6) cout << SDL_JoystickGetAxis(joystick, i) << " ";
     cout << endl;
-    __sleep(1);
+    cout << "Buttons\n";
+    fi(i,0,6) cout << (int)SDL_JoystickGetButton(joystick, i) << " ";
+   
+    /*
+    c1 = SDL_JoystickGetAxis(joystick,0);
+    cout << "Raw: " << c1 << endl;
+    float v, d;
+    cout << "V: " << (c1*0.01*cons)+trim << endl;
+    cout << "D: " << (c1+trim)*(0.01*cons) << endl;
+    */
+
+    cout << endl;
+    sleep(1);
   }
 
   SDL_Quit();
