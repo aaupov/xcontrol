@@ -8,7 +8,6 @@ class QTableWidget;
 
 class TransMatrix : public QWidget {
   Q_OBJECT
-  QJoystick* joystick;
   int NX;
 public:
   TransMatrix(QWidget* parent = 0);
@@ -18,6 +17,13 @@ private slots:
 public slots:
   void loadMatrix();
   void saveMatrix();
+};
+
+class JoystickTab : public QWidget {
+  Q_OBJECT
+  QJoystick* joystick;
+public:
+  JoystickTab(QWidget* parent = 0);
 };
 
 /*class JoystickSelection : public QWidget {

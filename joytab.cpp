@@ -3,8 +3,8 @@
 #include "joytab.h"
 
 TransMatrix::TransMatrix(QWidget* parent) : QWidget(parent){
-  joystick = QJoystick::instance();
-  NX = joystick->joystickNumAxes(joystick->currentJoystick());
+  QJoystick *j = QJoystick::instance();
+  TransMatrix::NX = j->joystickNumAxes( j->currentJoystick( ));
 
   tableWidget = new QTableWidget(this);
 
@@ -101,4 +101,11 @@ void TransMatrix::saveMatrix() {
     }
     file.close();
   }
+}
+
+JoystickTab::JoystickTab(QWidget* parent) : QWidget(parent){
+  joystick = QJoystick::instance();
+
+  QVBoxLayout *mainLayout = new QVBoxLayout;
+//mainLayout->
 }

@@ -23,7 +23,7 @@ void MainWindow::createTabWidget() {
 }
 
 void MainWindow::getParameters(){
-  //stub
+  //number of channels maybe?
 }
 
 void MainWindow::createMenus() {
