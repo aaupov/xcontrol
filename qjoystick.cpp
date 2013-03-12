@@ -9,16 +9,16 @@ QJoystick::QJoystick(QWidget *parent){
     QMessageBox::critical(parent, tr("XControl"), tr("SDL Init error"), 
         QMessageBox::Close);
   }
-  /*if (SDL_NumJoysticks() == 0){
+  if (SDL_NumJoysticks() == 0){
     QMessageBox::critical(parent, tr("XControl"), tr("No joysticks found"),
         QMessageBox::Close);
   }
-  */
   m_joystick = 0;
   setJoystick(0);
 }
 
 int QJoystick::availableJoysticks(){
+  //return 1;
   return SDL_NumJoysticks();
 }
 

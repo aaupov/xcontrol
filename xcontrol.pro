@@ -1,4 +1,4 @@
-QT += core gui
+QT += core gui 
 TARGET = XControl
 SOURCES += mainwindow.cpp \
            joytab.cpp \
@@ -16,4 +16,5 @@ win32 {
 DEFINES += SDL_WIN
 }
 INCLUDEPATH += /usr/include/SDL
-CONFIG += debug
+CONFIG += debug serialport
+FORMS = Formbad.ui
